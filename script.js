@@ -374,6 +374,12 @@ var selectedBody = körper[0];
 var selectedLegs = beine[0];
 var selectedArms = arme[0];
 var selectedSuit;
+const selectedItems = {
+  selectedHelmet: helme[0],
+  selectedArms: arme[0],
+  selectedBody: körper[0],
+  selectedLegs: beine[0]
+};
 
 const calculateStat = ({
   selectedHelmet,
@@ -396,45 +402,45 @@ const calculateStat = ({
 const updateSelectedSuit = () => {
   selectedSuit = {
     Strength: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Strength"
     }),
     Agility: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Agility"
     }),
     Speed: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Speed"
     }),
     Price: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Price"
     }),
     Protection: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Protection"
     }),
     Weight: calculateStat({
-      selectedArms,
-      selectedBody,
-      selectedHelmet,
-      selectedLegs,
+      selectedArms: selectedItems.selectedArms,
+      selectedBody: selectedItems.selectedBody,
+      selectedHelmet: selectedItems.selectedHelmet,
+      selectedLegs: selectedItems.selectedLegs,
       key: "Weight"
     })
   };
@@ -469,8 +475,9 @@ window.changeGitter = (element, selectedElementKey) => {
   document.querySelectorAll(".select").forEach(
     (select) =>
       (select.onclick = (button) => {
-        const targetId = element[button.target.id];
-        window[selectedElementKey] = targetId;
+        const selectedElement = element[button.target.id];
+        selectedItems[selectedElementKey] = selectedElement;
+        console.log(selectedHelmet, selectedElement);
         updateSelectedSuit();
         updateChartData([
           selectedSuit.Strength,
@@ -491,13 +498,15 @@ const myChart = new Chart(ctx, {
     datasets: [
       {
         label: "Statistics",
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.9)",
-          "rgba(54, 162, 235, 0.9)",
-          "rgba(255, 206, 86, 0.9)",
-          "rgba(75, 192, 192, 0.9)",
-          "rgba(75, 192, 192, 0.9)"
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointBackgroundColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(75, 192, 192, 1)"
         ],
+
         borderColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
