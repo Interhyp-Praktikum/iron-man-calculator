@@ -1,0 +1,92 @@
+body {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/blueprint.jpg");
+  background-repeat: repeat;
+  background-size: 101%;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.container > div {
+  flex: 1;
+  text-align: center;
+  flex-basis: 30%;
+}
+
+.gitter {
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  width: 150px;
+  margin: auto;
+}
+
+.select {
+  padding: 5px;
+  border: 1px solid white;
+  height: 50px;
+  width: 50px;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+.grid-image {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 30px;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: Stark;
+  src: url("/assets/avengers2.ttf") format("truetype");
+}
+
+h1 {
+  font-family: Stark;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(184, 15, 15);
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  letter-spacing: 2px;
+  margin-top: 4.5vw;
+}
+
+.Mute {
+  font-size: 27.5px;
+  border-radius: 50%;
+  line-height: 1;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 0.25vw;
+  right: 1.75vw;
+  cursor: pointer;
+}
+
+.Reset {
+  font-size: 20px;
+  border-radius: 50%;
+  line-height: 1;
+  background: white;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0.25vw;
+  left: 2.3vw;
+  cursor: pointer;
+}
+
+#Ehre {
+  margin-top: 70%;
+  margin-left: 70%;
+}
