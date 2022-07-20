@@ -134,14 +134,7 @@ canvas {
   -webkit-animation-delay: 1.6s;
   animation-delay: 1.6s;
 }
-.Title span:nth-of-type(20) {
-  -webkit-animation-delay: 1.7s;
-  animation-delay: 1.7s;
-}
-.Title span:nth-of-type(21) {
-  -webkit-animation-delay: 1.8s;
-  animation-delay: 1.8s;
-}
+
 @-webkit-keyframes wave-text {
   00% {
     transform: translateY(0em);
