@@ -4,6 +4,10 @@
     <title>The Iron-man Calculator!</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   </head>
   <body>
     <!--hier kannst du deine HTML Tags eintragen-->
@@ -13,29 +17,80 @@
       src="/assets/highwaytohell.mp3"
       autoplay
     ></audio>
-    <h1>Iron Man Calculator</h1>
+    <div class="Title">
+      <span>I</span>
+      <span>r</span>
+      <span>o</span>
+      <span>n</span>
+      <span> </span>
+      <span>M</span>
+      <span>a</span>
+      <span>n</span>
+      <span> </span>
+      <span>C</span>
+      <span>o</span>
+      <span>n</span>
+      <span>f</span>
+      <span>i</span>
+      <span>g</span>
+      <span>u</span>
+      <span>r</span>
+      <span>a</span>
+      <span>t</span>
+      <span>o</span>
+      <span>r</span>
+    </div>
     <button type="button" class="Mute" id="Pika" onclick="mute()">🔊</button>
-    <button type="button" class="Reset">↻</button>
+    <button type="button" class="Reset" onclick="reset()">↻</button>
     <div class="container">
+      
       <div class="box">
-        <canvas id="myChart" width="250" height="250"></canvas>
+          <div class="price animate__animated animate__tada">
+              <p>Estimated Price:<br/> 
+                <span id="amount">0€</span></p>
+            </div>
+        <canvas id="myChart" width="300" height="400"></canvas>
       </div>
-      <div class="box">
+      <div class="box"> 
+
+        <div class="frankensteinbox">  
+        <img id="legs" class="frankenstein"></img> 
+        <img id="arms" class="frankenstein"></img>
+        <img id="body" class="frankenstein"></img>   
+        <img id="helmet" class="frankenstein"></img>
+
         <img src="/assets/IronManSilouette.png" width="150" />
+        </div>
       </div>
       <div class="box">
-        <button onclick="changeItemsInGrid(helme, 'selectedHelmet')">
+        <button
+          id="button-12"
+          onclick="changeItemsInGrid(helme, 'selectedHelmet')"
+        >
           Helmets
         </button>
-        <button onclick="changeItemsInGrid(arme, 'selectedArms')">Arms</button>
-        <button onclick="changeItemsInGrid(beine, 'selectedLegs')">Legs</button>
-        <button onclick="changeItemsInGrid(körper, 'selectedBody')">
+        <button
+          id="button-12"
+          onclick="changeItemsInGrid(arme, 'selectedArms')"
+        >
+          Arms
+        </button>
+        <button
+          id="button-12"
+          onclick="changeItemsInGrid(beine, 'selectedLegs')"
+        >
+          Legs
+        </button>
+        <button
+          id="button-12"
+          onclick="changeItemsInGrid(körper, 'selectedBody')"
+        >
           Body
         </button>
         <div class="grid"></div>
       </div>
     </div>
-    <button id="Ehre">EA</button>
+    <a class="Impressum" href="impressum.html">Impressum</a>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="stats.js"></script>
     <script src="script.js"></script>

@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@600&family=Edu+VIC+WA+NT+Beginner:wght@600&display=swap");
+
+@font-face {
+  font-family: Stark;
+  src: url("/assets/avengers2.ttf") format("truetype");
+}
+
+#Impressum {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Edu NSW ACT Foundation", bold;
+}
+
+p {
+  text-align: center;
+  color: white;
+  text-shadow: 3px 3px 2px black;
+}
+.ml15 {
+  font-weight: 800;
+  font-size: 3.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+.ml15 .word {
+  display: inline-block;
+  line-height: 1em;
+}
+body {
+  background-image: url("/assets/282535.jpg");
+  background-size: 100%;
+}

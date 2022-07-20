@@ -1,12 +1,11 @@
 /* eslint-disable */
 
 let summedUpStats;
-
 const selectedItems = {
-  selectedHelmet: window.helme[0],
-  selectedArms: window.arme[0],
-  selectedBody: window.körper[0],
-  selectedLegs: window.beine[0]
+  selectedHelmet: undefined,
+  selectedArms: undefined,
+  selectedBody: undefined,
+  selectedLegs: undefined
 };
 
 const calculateStat = ({
@@ -15,19 +14,41 @@ const calculateStat = ({
   selectedLegs,
   selectedArms,
   helmetWeight = 0.5,
-  bodyWeight = 2,
+  bodyWeight = 1,
   key
 }) => {
+  const helmetValue = selectedHelmet ? selectedHelmet[key] : 0;
+  const bodyValue = selectedBody ? selectedBody[key] : 0;
+  const legsValue = selectedLegs ? selectedLegs[key] : 0;
+  const armsValue = selectedArms ? selectedArms[key] : 0;
   return (
-    (selectedHelmet[key] * helmetWeight +
-      selectedBody[key] * bodyWeight +
-      selectedLegs[key] +
-      selectedArms[key]) /
+    (helmetValue * helmetWeight +
+      bodyValue * bodyWeight +
+      legsValue +
+      armsValue) /
     4
   );
 };
 
 const updateSummedUpStats = () => {
+  const helmetPrice = selectedItems.selectedHelmet
+    ? selectedItems.selectedHelmet.Price
+    : 0;
+  const bodyPrice = selectedItems.selectedBody
+    ? selectedItems.selectedBody.Price
+    : 0;
+  const legsPrice = selectedItems.selectedLegs
+    ? selectedItems.selectedLegs.Price
+    : 0;
+  const armsPrice = selectedItems.selectedArms
+    ? selectedItems.selectedArms.Price
+    : 0;
+  var finalPrice = helmetPrice + bodyPrice + legsPrice + armsPrice;
+  document.getElementById("amount").innerText = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR"
+  }).format(finalPrice);
+
   summedUpStats = {
     Strength: calculateStat({
       selectedArms: selectedItems.selectedArms,
@@ -90,22 +111,42 @@ window.mute = function () {
   }
 };
 
+window.reset = function () {
+  location.reload();
+};
+
 window.changeItemsInGrid = (allElements, selectedElementKey) => {
   const gitter = document.querySelector(".grid");
   gitter.innerHTML = allElements
-    .map(
-      (element, index) =>
-        `<button class="grid-button" id="${index}">
+    .map((element, index) => {
+      const buttonelement = allElements[index];
+      const selectedElement = selectedItems[selectedElementKey];
+      const background =
+        buttonelement === selectedElement ? "background-color:#fefefe" : "";
+
+      return `<button style="${background}" class="grid-button" id="${index}">
             <img class="grid-image" src="/assets/${element.Image}"/>
-        </button>`
-    )
+        </button>`;
+    })
     .join("");
+
   document.querySelectorAll(".grid-button").forEach(
     (select) =>
       (select.onclick = (button) => {
         const selectedElement = allElements[button.target.id];
+        var gridbuttons = document.querySelectorAll(".grid-button");
+        gridbuttons.forEach((button) => {
+          var buttonElement = allElements[button.id];
+          if (buttonElement != selectedElement) {
+            button.style.backgroundColor = "transparent";
+          } else {
+            button.style.backgroundColor = "#fefefe";
+          }
+        });
+
         selectedItems[selectedElementKey] = selectedElement;
         updateSummedUpStats();
+        updatepreview();
         updateChartData([
           summedUpStats.Strength,
           summedUpStats.Speed,
@@ -163,7 +204,7 @@ const myChart = new Chart(ctx, {
         pointLabels: {
           color: "white",
           font: {
-            size: 10
+            size: 15
           }
         },
         grid: {
@@ -187,3 +228,31 @@ window.updateChartData = (data) => {
   myChart.data.datasets[0].data = data;
   myChart.update();
 };
+
+var Helmbild = document.querySelector("#helmet");
+var Armbild = document.querySelector("#arms");
+var Beinbild = document.querySelector("#legs");
+var Körperbild = document.querySelector("#body");
+
+function updatepreviewimage(Bild, Element) {
+  var anzugteil = selectedItems[Element];
+  if (anzugteil) {
+    Bild.src = "/assets/" + anzugteil.Image;
+    Bild.style.top = anzugteil.Position.top + "px";
+    Bild.style.left = anzugteil.Position.left + "px";
+    Bild.style.width = anzugteil.Position.width + "px";
+    if (anzugteil.Position.height) {
+      Bild.style.height = anzugteil.Position.height + "px";
+    }
+    if (anzugteil.Position.width) {
+      Bild.style.width = anzugteil.Position.width + "px";
+    }
+  }
+}
+
+function updatepreview() {
+  updatepreviewimage(Beinbild, "selectedLegs");
+  updatepreviewimage(Körperbild, "selectedBody");
+  updatepreviewimage(Armbild, "selectedArms");
+  updatepreviewimage(Helmbild, "selectedHelmet");
+}
