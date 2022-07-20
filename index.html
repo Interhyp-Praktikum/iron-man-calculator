@@ -6,30 +6,38 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!--hier kannst du deine HTML Tags eintragen-->
+    <!--eine Übersicht über alle Tags gibt es hier: https://wiki.selfhtml.org/wiki/HTML/Elemente -->
     <audio
       id="Backgroundmusic"
       src="/assets/highwaytohell.mp3"
       autoplay
     ></audio>
-
-    <!--hier kannst du deine HTML Tags eintragen-->
-    <!--eine Übersicht über alle Tags gibt es hier: https://wiki.selfhtml.org/wiki/HTML/Elemente -->
     <h1>Iron Man Calculator</h1>
     <button type="button" class="Mute" id="Pika" onclick="mute()">🔊</button>
     <button type="button" class="Reset">↻</button>
     <div class="container">
-      <canvas id="myChart" width="250" height="250"></canvas>
-      <div><img src="/assets/IronManSilouette.png" width="150" /></div>
-      <div>
-        <button onclick="changeGitter(helme, 'selectedHelmet')">Helmets</button>
-        <button onclick="changeGitter(arme, 'selectedArms')">Arms</button>
-        <button onclick="changeGitter(beine, 'selectedLegs')">Legs</button>
-        <button onclick="changeGitter(körper, 'selectedBody')">Body</button>
-        <div class="gitter"></div>
+      <div class="box">
+        <canvas id="myChart" width="250" height="250"></canvas>
+      </div>
+      <div class="box">
+        <img src="/assets/IronManSilouette.png" width="150" />
+      </div>
+      <div class="box">
+        <button onclick="changeItemsInGrid(helme, 'selectedHelmet')">
+          Helmets
+        </button>
+        <button onclick="changeItemsInGrid(arme, 'selectedArms')">Arms</button>
+        <button onclick="changeItemsInGrid(beine, 'selectedLegs')">Legs</button>
+        <button onclick="changeItemsInGrid(körper, 'selectedBody')">
+          Body
+        </button>
+        <div class="grid"></div>
       </div>
     </div>
     <button id="Ehre">EA</button>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="stats.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
